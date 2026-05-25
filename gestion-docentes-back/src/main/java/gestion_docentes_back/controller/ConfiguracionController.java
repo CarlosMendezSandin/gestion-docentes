@@ -9,8 +9,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/configuracion")
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*",
-        methods = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class ConfiguracionController {
 
     @Autowired

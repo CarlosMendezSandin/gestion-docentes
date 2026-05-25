@@ -49,7 +49,8 @@ function DocenteDashboard() {
       await cargarSolicitudes();
     } catch (error) {
       console.error("Error al crear la solicitud:", error);
-      setMensaje({ texto: 'No se pudo registrar tu solicitud. Inténtalo de nuevo.', tipo: 'danger' });
+      const msg = error.response?.data || 'No se pudo registrar tu solicitud. Inténtalo de nuevo.';
+      setMensaje({ texto: msg, tipo: 'danger' });
     }
   };
 

@@ -16,9 +16,6 @@ import java.util.Map;
 // AUSENCIAS
 @RestController
 @RequestMapping("/api/ausencias")
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", methods = {
-        RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS
-})
 class AusenciaController {
 
     @Autowired
@@ -43,9 +40,6 @@ class AusenciaController {
 // GUARDIAS
 @RestController
 @RequestMapping("/api/guardias")
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*", methods = {
-        RequestMethod.GET, RequestMethod.PUT, RequestMethod.OPTIONS, RequestMethod.PATCH
-})
 class GuardiaController {
 
     @Autowired

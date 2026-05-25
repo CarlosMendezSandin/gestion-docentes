@@ -18,8 +18,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/importar")
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*",
-        methods = {RequestMethod.POST, RequestMethod.OPTIONS})
 public class ImportarController {
 
     @Autowired
