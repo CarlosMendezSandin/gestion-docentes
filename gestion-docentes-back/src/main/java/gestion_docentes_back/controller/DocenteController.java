@@ -1,7 +1,7 @@
 package gestion_docentes_back.controller;
 
 import gestion_docentes_back.model.Docente;
-import gestion_docentes_back.repository.DocenteRepository;
+import gestion_docentes_back.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,18 @@ public class DocenteController {
 
     @Autowired
     private DocenteRepository docenteRepository;
+
+    @Autowired
+    private HorarioRepository horarioRepository;
+
+    @Autowired
+    private AusenciaRepository ausenciaRepository;
+
+    @Autowired
+    private GuardiaRepository guardiaRepository;
+
+    @Autowired
+    private SolicitudAsuntosPropiosRepository solicitudRepository;
 
     // GET /api/docentes — listar todos
     @GetMapping
@@ -93,6 +105,11 @@ public class DocenteController {
         if (!docenteRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
+        // Borrar registros relacionados antes de eliminar el docente
+        solicitudRepository.deleteAll(solicitudRepository.findByDocenteId(id));
+        guardiaRepository.deleteAll(guardiaRepository.findByDocenteGuardiaId(id));
+        ausenciaRepository.deleteAll(ausenciaRepository.findByDocenteId(id));
+        horarioRepository.deleteAll(horarioRepository.findByDocenteId(id));
         docenteRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
